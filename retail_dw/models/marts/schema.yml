@@ -1,0 +1,30 @@
+
+version: 2
+
+models:
+  - name: dim_products
+    schema: sales
+    columns:
+      - name: product_key
+        description: "surrogate key for dim_products table"
+      - name: promotion_id
+        description: "A unique id which identifies each product"
+  - name: dim_promotions
+    schema: sales
+    columns:
+      - name: promotion_key
+        description: "surrogate key for dim_promotions table"
+      - name: promotion_id
+        description: "A unique id which identifies the promotion available on products"
+  - name: dim_shipping_details
+    schema: sales
+    columns:
+      - name: shipping_key
+        description: "surrogate key for dim_shipping_details table"
+      - name: postal_code
+        description: "Postal codes to identify regions"
+  - name: dim_fulfillments
+    schema: sales
+    columns:
+      - name: fulfillment_key
+        description: "surrogate key for dim_fulfillments table"

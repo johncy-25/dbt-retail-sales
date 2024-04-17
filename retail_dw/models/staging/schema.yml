@@ -1,0 +1,13 @@
+
+version: 2
+
+models:
+  - name: stg_promotions
+    schema: staging
+    columns:
+      - name: promotion_id
+        description: "A unique id which identifies the promotion available on products"
+  - name: stg_products
+    schema: staging
+  - name: stg_shipping_details
+    schema: staging
