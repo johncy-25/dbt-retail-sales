@@ -7,24 +7,106 @@ models:
     columns:
       - name: product_key
         description: "surrogate key for dim_products table"
-      - name: promotion_id
+      - name: product_id
         description: "A unique id which identifies each product"
+      - name: product_sku_id
+        description: "product stock keeping unit used to track inventory"
+      - name: product_style
+        description: "Style of the product"
+      - name: product_category
+        description: "Category of the product"
+      - name: product_size
+        description: "Size of the product"
   - name: dim_promotions
     schema: sales
     columns:
-      - name: promotion_key
-        description: "surrogate key for dim_promotions table"
       - name: promotion_id
         description: "A unique id which identifies the promotion available on products"
+      - name: promotion_key
+        description: "surrogate key for dim_promotions table"
+  - name: order_promotions
+    description: "This table contains mapping between orders and promotions applied on that order"
+    schema: sales
+    columns:
+      - name: order_key
+        description: "foreign key for fct_orders table"
+      - name: promotion_key
+        description: "foreign key for dim_promotions table"
   - name: dim_shipping_details
     schema: sales
     columns:
       - name: shipping_key
         description: "surrogate key for dim_shipping_details table"
       - name: postal_code
-        description: "Postal codes to identify regions"
+        description: "Postal code of the order region"
+      - name: city
+        description: "city of the order region"
+      - name: state
+        description: "state of the order region"
+      - name: country
+        description: "country of the order region"
+      - name: ship_service_level
+        description: "Shipping service level of the order region"
   - name: dim_fulfillments
     schema: sales
     columns:
       - name: fulfillment_key
         description: "surrogate key for dim_fulfillments table"
+      - name: fulfillment_type
+        description: "fulfillment type of the order"
+      - name: fulfilled_by
+        description: "details for order fulfilled by"
+      - name: sales_channel
+        description: "sales channel of the order"
+  - name: dim_date
+    schema: sales
+    columns:
+      - name: date_day
+        description: "contains date values"
+      - name: day_week
+        description: "day number of the week"
+      - name: day_of_week_name
+        description: "day name of the week"
+      - name: day_of_week_name_short
+        description: "day name of the week in short"
+      - name: day_of_month
+        description: "day number of the month"
+      - name: day_of_year
+        description: "day number of the year"
+      - name: week_of_year
+        description: "week number of the year"
+      - name: month_of_year
+        description: "month number of the year"
+      - name: month_name
+        description: "contains month name values"
+      - name: month_name_short
+        description: "month name in short"
+      - name: year_number
+        description: "contains year values"
+
+  - name: fct_orders
+    description: "This table contains the order details from the amazon sales report"
+    schema: sales
+    columns:
+      - name: order_key
+        description: "surrogate key for fct_orders table"
+      - name: product_key
+        description: "foreign key for dim_products table"
+      - name: shipping_key
+        description: "foreign key for dim_shipping_details table"
+      - name: fulfillment_key
+        description: "foreign key for dim_fulfillments table"
+      - name: order_date
+        description: "date of the order"
+      - name: order_status
+        description: "current status of the order"
+      - name: courier_status
+        description: "current courier status of the order"
+      - name: order_quantity
+        description: "quantity of the order"
+      - name: order_amount
+        description: "amount value of the order"
+      - name: currency
+        description: "currency used for the order transaction"
+      - name: b2b
+        description: "whether the order was a business to business order or not"
