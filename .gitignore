@@ -1,0 +1,6 @@
+
+retail_dw/target/
+retail_dw/dbt_packages/
+retail_dw/logs/
+logs/
+.idea/
